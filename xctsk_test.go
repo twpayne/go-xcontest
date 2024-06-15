@@ -27,7 +27,7 @@ func TestClientXCTskSaveLoad(t *testing.T) {
 	t.Logf("taskCode=%s", taskCode)
 
 	t.Run("load", func(t *testing.T) {
-		savedTask, err := client.XCTaskLoad(ctx, taskCode)
+		savedTask, err := client.XCTskLoad(ctx, taskCode)
 		assert.NoError(t, err)
 		expectedTask := *task
 		expectedTask.SSS.Direction = xctrack.DirectionExit // Returned task has SSS direction exit.
@@ -37,7 +37,7 @@ func TestClientXCTskSaveLoad(t *testing.T) {
 	})
 
 	t.Run("loadV2", func(t *testing.T) {
-		savedTaskV2, err := client.XCTaskLoadV2(ctx, taskCode)
+		savedTaskV2, err := client.XCTskLoadV2(ctx, taskCode)
 		assert.NoError(t, err)
 		assert.Equal(t, qrCodeTask, savedTaskV2.Task)
 		assert.Equal(t, author, savedTaskV2.Author)

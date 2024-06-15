@@ -26,7 +26,7 @@ type SavedTaskV2 struct {
 }
 
 // XCTskLoad loads the saved task with the given task code.
-func (c *Client) XCTaskLoad(ctx context.Context, taskCode string) (*SavedTask, error) {
+func (c *Client) XCTskLoad(ctx context.Context, taskCode string) (*SavedTask, error) {
 	var task xctrack.Task
 	author, lastModified, err := c.doRequestTask(ctx, "/xctsk/load/"+taskCode, &task)
 	if err != nil {
@@ -40,7 +40,7 @@ func (c *Client) XCTaskLoad(ctx context.Context, taskCode string) (*SavedTask, e
 }
 
 // XCTskLoadV2 loads the saved task with the given task code in QR code format.
-func (c *Client) XCTaskLoadV2(ctx context.Context, taskCode string) (*SavedTaskV2, error) {
+func (c *Client) XCTskLoadV2(ctx context.Context, taskCode string) (*SavedTaskV2, error) {
 	var task xctrack.QRCodeTask
 	author, lastModified, err := c.doRequestTask(ctx, "/xctsk/loadV2/"+taskCode, &task)
 	if err != nil {
