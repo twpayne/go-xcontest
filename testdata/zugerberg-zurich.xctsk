@@ -1,0 +1,70 @@
+{
+  "taskType": "CLASSIC",
+  "version": 1,
+  "earthModel": "WGS84",
+  "turnpoints": [
+    {
+      "type": "TAKEOFF",
+      "radius": 100,
+      "waypoint": {
+        "name": "ZUGERBERG",
+        "lat": 47.14801,
+        "lon": 8.53592,
+        "altSmoothed": 947
+      }
+    },
+    {
+      "type": "SSS",
+      "radius": 7000,
+      "waypoint": {
+        "name": "SIHLBRUGG",
+        "lat": 47.21762,
+        "lon": 8.57695,
+        "altSmoothed": 535
+      }
+    },
+    {
+      "radius": 1500,
+      "waypoint": {
+        "name": "SIHLBRUGG",
+        "lat": 47.21762,
+        "lon": 8.57695,
+        "altSmoothed": 535
+      }
+    },
+    {
+      "type": "ESS",
+      "radius": 1000,
+      "waypoint": {
+        "name": "ALLMEND",
+        "lat": 47.35419,
+        "lon": 8.51971,
+        "altSmoothed": 422
+      }
+    },
+    {
+      "radius": 400,
+      "waypoint": {
+        "name": "ALLMEND",
+        "lat": 47.35419,
+        "lon": 8.51971,
+        "altSmoothed": 422
+      }
+    }
+  ],
+  "takeoff": {
+    "timeOpen": "15:00:00Z",
+    "timeClose": "18:00:00Z"
+  },
+  "sss": {
+    "type": "ELAPSED-TIME",
+    "direction": "ENTER",
+    "timeGates": [
+      "15:00:00Z"
+    ]
+  },
+  "goal": {
+    "type": "CYLINDER",
+    "deadline": "18:00:00Z"
+  }
+}
