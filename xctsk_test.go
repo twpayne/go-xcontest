@@ -13,7 +13,7 @@ import (
 )
 
 func TestClientXCTskSaveLoad(t *testing.T) {
-	t.Skip("uses xcontest.org servers") // Comment out this line to enable this test.
+	// t.Skip("uses xcontest.org servers") // Comment out this line to enable this test.
 
 	ctx := context.Background()
 	client := xcontest.NewClient()
