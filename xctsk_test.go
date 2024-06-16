@@ -31,7 +31,6 @@ func TestClientXCTskSaveLoad(t *testing.T) {
 		assert.NoError(t, err)
 		expectedTask := *task
 		expectedTask.SSS.Direction = xctrack.DirectionExit // Returned task has SSS direction exit.
-		expectedTask.Takeoff = nil                         // Returned task has takeoff cleared.
 		assert.Equal(t, &expectedTask, savedTask.Task)
 		assert.Equal(t, author, savedTask.Author)
 	})
@@ -39,6 +38,8 @@ func TestClientXCTskSaveLoad(t *testing.T) {
 	t.Run("loadV2", func(t *testing.T) {
 		savedTaskV2, err := client.XCTskLoadV2(ctx, taskCode)
 		assert.NoError(t, err)
+		expectedTask := *qrCodeTask
+		expectedTask.SSS.Direction = xctrack.QRCodeDirectionExit // Returned task has SSS direction exit.
 		assert.Equal(t, qrCodeTask, savedTaskV2.Task)
 		assert.Equal(t, author, savedTaskV2.Author)
 	})
@@ -46,9 +47,14 @@ func TestClientXCTskSaveLoad(t *testing.T) {
 	t.Run("qr", func(t *testing.T) {
 		qrCodeData, err := client.XCTskQR(ctx, qrCodeTask)
 		assert.NoError(t, err)
-		expectedQRCodeData, err := os.ReadFile("testdata/zugerberg-zurich.svg")
-		assert.NoError(t, err)
-		assert.Equal(t, expectedQRCodeData, qrCodeData)
+		resetGoldenFiles := false
+		if resetGoldenFiles {
+			os.WriteFile("testdata/zugerberg-zurich.svg", qrCodeData, 0o666)
+		} else {
+			expectedQRCodeData, err := os.ReadFile("testdata/zugerberg-zurich.svg")
+			assert.NoError(t, err)
+			assert.Equal(t, expectedQRCodeData, qrCodeData)
+		}
 	})
 }
 
